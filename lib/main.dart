@@ -1,5 +1,4 @@
-import 'dart:js';
-
+import 'package:airbnb_app_clone/MainList.dart';
 import 'package:airbnb_app_clone/login.dart';
 import 'package:airbnb_app_clone/message.dart';
 import 'package:airbnb_app_clone/search.dart';
@@ -23,6 +22,7 @@ void main() {
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +41,6 @@ class TabPage extends StatefulWidget {
 }
 
 class _TabPageState extends State<TabPage> {
-
   int _selectedIndex = 0; // 처음에 나올 화면 지정
 
   // 이동할 페이지
