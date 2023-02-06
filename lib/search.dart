@@ -9,6 +9,33 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Container(
+          height: 50,
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(30)),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                flex:1,
+                child: CircleAvatar(
+                  radius: 20,
+                  backgroundColor: Colors.white,
+                  child: IconButton(
+                    icon: Icon(
+                        Icons.search,
+                        color: Colors.black),
+                    onPressed: () => {},
+                  ),
+                )),
+              Flexible(
+                  flex:1,
+                  child: Text('어디로 여행가세요?', style: TextStyle(color: Colors.black))),
+            ],
+          ),
+        ),
         backgroundColor: Colors.white,
       ),
       body: Container(
