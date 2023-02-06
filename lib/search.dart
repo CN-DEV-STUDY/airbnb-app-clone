@@ -1,5 +1,6 @@
 import 'package:airbnb_app_clone/MainList.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 class Search extends StatelessWidget {
@@ -9,30 +10,63 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Container(
           height: 50,
+          padding: EdgeInsets.all(5),
           decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
+              color: Colors.white,
+              border: Border.all(color: Color(0xffadadad), width: 0.3),
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xffececec).withOpacity(1),
+                  blurRadius: 5.0,
+                  spreadRadius: 0.0,
+                  offset: const Offset(1, 5),
+                )
+              ],
               borderRadius: BorderRadius.circular(30)),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Flexible(
-                flex:1,
+              Expanded(
+                flex: 1,
                 child: CircleAvatar(
                   radius: 20,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.transparent,
                   child: IconButton(
                     icon: Icon(
                         Icons.search,
                         color: Colors.black),
                     onPressed: () => {},
                   ),
-                )),
-              Flexible(
-                  flex:1,
-                  child: Text('어디로 여행가세요?', style: TextStyle(color: Colors.black))),
+                ),
+              ),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('어디로 여행가세요?', style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold)),
+                    Text('어디든지 언제든 일주일 게스트 추가', style: TextStyle(color: Colors.black, fontSize: 12))
+                  ],
+                )
+              ),
+              Expanded(
+                // flex: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
+                    border: Border.all(
+                      color: Color(0xff5e5e5e),
+                      width:0.3
+                    )
+                  ),
+                  child: Icon(
+                      Icons.filter_list_alt,
+                      color: Colors.black),
+                )
+              ),
             ],
           ),
         ),

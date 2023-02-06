@@ -5,9 +5,41 @@ import 'package:airbnb_app_clone/search.dart';
 import 'package:airbnb_app_clone/travel.dart';
 import 'package:airbnb_app_clone/wish_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+const MaterialColor white = const MaterialColor(
+  0xFFFFFFFF,
+  const <int, Color>{
+    50: const Color(0xFFFFFFFF),
+    100: const Color(0xFFFFFFFF),
+    200: const Color(0xFFFFFFFF),
+    300: const Color(0xFFFFFFFF),
+    400: const Color(0xFFFFFFFF),
+    500: const Color(0xFFFFFFFF),
+    600: const Color(0xFFFFFFFF),
+    700: const Color(0xFFFFFFFF),
+    800: const Color(0xFFFFFFFF),
+    900: const Color(0xFFFFFFFF),
+  },
+);
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    theme: ThemeData(
+      primarySwatch: white,
+      appBarTheme: AppBarTheme(
+        // iconTheme: IconThemeData(color: Colors.black),
+        // color: Colors.deepPurpleAccent,
+        // foregroundColor: Colors.black,
+        systemOverlayStyle: SystemUiOverlayStyle( //<-- SEE HERE
+          // Status bar color
+          statusBarColor: Colors.green,
+          statusBarIconBrightness: Brightness.dark,
+          statusBarBrightness: Brightness.light,
+        ),
+      ),
+    ),
     initialRoute: "/",
     routes: {
       "/" : (context) => MainPage(),
