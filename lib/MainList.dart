@@ -8,8 +8,6 @@ Future<MainList> fetchMainList() async {
   final response = await http
       .get(Uri.parse("http://localhost:8080/mainList"));
 
-  print("please");
-
   if(response.statusCode == 200) {
     var responseData = jsonDecode(utf8.decode(response.bodyBytes));
     // List<Category> categoryList = List<Category>.from(i.first.map((model) => Category.fromJson(model)));

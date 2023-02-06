@@ -15,13 +15,40 @@ class Search extends StatelessWidget {
         child: FutureBuilder<MainList>(
           future: futureMainList,
           builder: (context, snapshot) {
-            if(snapshot.hasData) {
-              return Text(snapshot.data!.categoryList[0].name);
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
+            if(!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              return Container(
+                child: ListView.builder(
+                  itemCount: snapshot.data!.categoryList.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children:[
+                          Image.network(snapshot.data!.categoryList[index].url, height: 30),
+                          Text(snapshot.data!.categoryList[index].name, style: TextStyle(fontSize: 12)),
+                        ],
+                      )
+                    );
+                  },
+                )
+              );
             }
-            // 기본적으로 로딩 Spinner를 보여줍니다.
-            return CircularProgressIndicator();
+
+
+
+            // if(snapshot.hasData) {
+            //   for (var element in snapshot.data!.categoryList) {
+            //     Text(element.name);
+            //   }
+            // } else if (snapshot.hasError) {
+            //   return Text("${snapshot.error}");
+            // }
+            // // 기본적으로 로딩 Spinner를 보여줍니다.
+            // return CircularProgressIndicator();
           },
         ),
       ),
