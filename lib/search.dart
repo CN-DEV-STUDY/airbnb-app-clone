@@ -10,6 +10,7 @@ class Search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Container(
           height: 50,
@@ -53,65 +54,100 @@ class Search extends StatelessWidget {
                 )
               ),
               Expanded(
-                // flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100.0)),
-                    border: Border.all(
-                      color: Color(0xff5e5e5e),
-                      width:0.3
-                    )
-                  ),
-                  child: Icon(
-                      Icons.filter_list_alt,
-                      color: Colors.black),
-                )
+                flex: 1,
+                child: GestureDetector(
+                  onTap: () {
+                    //Navigator.of(context).pop();
+                  },
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        padding: EdgeInsets.all(3),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(width: 0.3, color: Colors.black)),
+                        child: Icon(
+                          Icons.sort,
+                          color: Colors.black,
+                        ),
+                      )),
+                ),
               ),
             ],
           ),
         ),
-        backgroundColor: Colors.white,
       ),
-      body: Container(
-        child: FutureBuilder<MainList>(
-          future: futureMainList,
-          builder: (context, snapshot) {
-            if(!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
-            } else {
-              return Container(
-                child: ListView.builder(
-                  itemCount: snapshot.data!.categoryList.length,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children:[
-                          Image.network(snapshot.data!.categoryList[index].url, height: 30),
-                          Text(snapshot.data!.categoryList[index].name, style: TextStyle(fontSize: 12)),
-                        ],
-                      )
-                    );
-                  },
-                )
-              );
-            }
-
-
-
-            // if(snapshot.hasData) {
-            //   for (var element in snapshot.data!.categoryList) {
-            //     Text(element.name);
-            //   }
-            // } else if (snapshot.hasError) {
-            //   return Text("${snapshot.error}");
-            // }
-            // // 기본적으로 로딩 Spinner를 보여줍니다.
-            // return CircularProgressIndicator();
-          },
-        ),
+      body: Column(
+        children: [
+          Flexible(
+            flex: 1,
+            child: FutureBuilder<MainList>(
+              future: futureMainList,
+              builder: (context, snapshot) {
+                if(!snapshot.hasData) {
+                  return Center(child: CircularProgressIndicator());
+                } else if(snapshot.hasData) {
+                  return Scrollbar(
+                    controller: ScrollController(),
+                    isAlwaysShown: true,
+                    child: ListView.builder(
+                      itemCount: snapshot.data!.categoryList.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children:[
+                                Image.network(snapshot.data!.categoryList[index].url, height: 30),
+                                Text(snapshot.data!.categoryList[index].name, style: TextStyle(fontSize: 12)),
+                              ],
+                            )
+                        );
+                      },
+                    ),
+                  );
+                }
+                // 기본적으로 로딩 Spinner를 보여줍니다.
+                return CircularProgressIndicator();
+              },
+            ),
+          ),
+          Flexible(
+            flex: 7,
+            child: FutureBuilder<MainList>(
+            future: futureMainList,
+            builder: (context, snapshot) {
+              if(!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              } else if(snapshot.hasData) {
+                return Scrollbar(
+                  isAlwaysShown: true,
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.categoryList.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                          padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children:[
+                              Container(width: 300, height: 300, color: Colors.black,)
+                              // Image.network(snapshot.data!.accomodationList[index].url, height: 30),
+                              // Text(snapshot.data!.categoryList[index].name, style: TextStyle(fontSize: 12)),
+                            ],
+                          )
+                      );
+                    },
+                  ),
+                );
+              }
+              // 기본적으로 로딩 Spinner를 보여줍니다.
+              return CircularProgressIndicator();
+            },
+          ),
+          ),
+        ],
       ),
     );
   }
