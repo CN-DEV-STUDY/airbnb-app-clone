@@ -57,6 +57,9 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle( // 상태 표시줄 색 변경
+      statusBarColor: Colors.transparent // 투명색
+    ));
     return Scaffold(
       body: Center(
         child: TabPage(),

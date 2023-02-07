@@ -5,38 +5,72 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-            flex:1,
-            child: Container(
-              alignment: Alignment.topLeft,
-              margin: EdgeInsets.fromLTRB(25, 20, 0, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('프로필' , style: TextStyle(fontSize: 40 , fontWeight: FontWeight.bold),),
-                  Text('로그인하고 다음 여행 계획을 세워보세요.', style: TextStyle(fontSize: 20 , color: Colors.grey),)
-                ],
-              ),
-            )),
-        Flexible(flex:2,
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    flex:1,
-                    child: TextButton(
-                      onPressed: (){},
-                      child: Row(
+    return Scaffold(
+      appBar: PreferredSize( // appBar 높이 조정
+        preferredSize: Size.fromHeight(30.0),
+        child: AppBar( backgroundColor:Color(0xffafafa), elevation: 0.0,), // appBar 색상변경과 그림자 제거
+      ),
+      body: Column(
+        children: [
+          Expanded(
+              flex:0,
+              child: Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.fromLTRB(25,0, 0, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                      Text('프로필' , style: TextStyle(fontSize: 40 , fontWeight: FontWeight.bold),),
+                      Text('로그인하고 다음 여행 계획을 세워보세요.', style: TextStyle(fontSize: 20 , color: Colors.grey),)
+                  ],
+                ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // margin: EdgeInsets.fromLTRB(30, 20, 0, 0),
+                        // width: 400,
+                        // height: 50,
                         children: [
-                          Expanded(flex: 1, child: Icon(Icons.settings_outlined , size: 20, color: Colors.black,),),
-                          Expanded(flex: 5, child: Text('설정' , style: TextStyle(fontSize: 20 , color: Colors.black))),
-                          Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
-                        ],
-                      )),),
-                  Expanded(
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                            width: 450,
+                            height: 50,
+                          child: ElevatedButton(onPressed: (){}, child: Text('로그인') , style: ElevatedButton.styleFrom(backgroundColor: Colors.pink , foregroundColor: Colors.white , textStyle: TextStyle(fontSize: 20))),
+                          ),
+                          
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+                            child: Row(
+                              children: [
+                                Text('에어비앤비 계정이 없나요?') , TextButton(onPressed: (){}, child: Text('회원 가입') , style: TextButton.styleFrom(foregroundColor: Colors.black),)
+                              ],
+                            ),
+                          )
+                        ]
+                    ),
+                    // ElevatedButton(onPressed: (){}, child: Text('로그인') , style: ButtonStyle(),)
+                  ],
+                ),
+              )),
+          Expanded(flex:3,
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex:1,
+                      child: TextButton(
+                          onPressed: (){},
+                          child: Row(
+                            children: [
+                              Expanded(flex: 1, child: Icon(Icons.settings_outlined , size: 20, color: Colors.black,),),
+                              Expanded(flex: 5, child: Text('설정' , style: TextStyle(fontSize: 20 , color: Colors.black))),
+                              Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
+                            ],
+                          )),),
+                    Expanded(
                       flex: 1,
                       child: TextButton(
                           onPressed: (){},
@@ -47,7 +81,7 @@ class Login extends StatelessWidget {
                               Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
                             ],
                           )),),
-                  Expanded(
+                    Expanded(
                       flex: 1,
                       child: TextButton(
                           onPressed: (){},
@@ -58,7 +92,7 @@ class Login extends StatelessWidget {
                               Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
                             ],
                           )),),
-                  Expanded(
+                    Expanded(
                       flex: 1,
                       child: TextButton(
                           onPressed: (){},
@@ -69,7 +103,7 @@ class Login extends StatelessWidget {
                               Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
                             ],
                           )),),
-                  Expanded(
+                    Expanded(
                       flex: 1,
                       child:  TextButton(
                           onPressed: (){},
@@ -80,8 +114,8 @@ class Login extends StatelessWidget {
                               Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
                             ],
                           )),
-                  ),
-                  Expanded(
+                    ),
+                    Expanded(
                       flex: 1,
                       child: TextButton(
                           onPressed: (){},
@@ -92,13 +126,14 @@ class Login extends StatelessWidget {
                               Expanded(flex: 1, child: Icon(Icons.arrow_forward_ios_outlined , size: 20, color: Colors.black,),),
                             ],
                           )),),
-                  Expanded(
-                      flex: 1,
-                      child: Text('          버전 223.05.1(26004030)', style: TextStyle(fontSize: 10),))
-                ],
-              ),
-            )),
-      ],
+                    Expanded(
+                        flex: 1,
+                        child: Text('          버전 223.05.1(26004030)', style: TextStyle(fontSize: 10),))
+                  ],
+                ),
+              )),
+        ],
+      ),
     );
   }
 }
