@@ -1,3 +1,4 @@
+import 'package:airbnb_app_clone/signIn.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
@@ -35,9 +36,11 @@ class Login extends StatelessWidget {
                         children: [
                           Container(
                             margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
-                            width: 450,
+                            width: 340,
                             height: 50,
-                          child: ElevatedButton(onPressed: (){}, child: Text('로그인') , style: ElevatedButton.styleFrom(backgroundColor: Colors.pink , foregroundColor: Colors.white , textStyle: TextStyle(fontSize: 20))),
+                          child: ElevatedButton(onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
+                          }, child: Text('로그인') , style: ElevatedButton.styleFrom(backgroundColor: Colors.pink , foregroundColor: Colors.white , textStyle: TextStyle(fontSize: 20))),
                           ),
                           
                           Container(

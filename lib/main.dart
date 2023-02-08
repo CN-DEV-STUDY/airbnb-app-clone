@@ -2,6 +2,7 @@ import 'package:airbnb_app_clone/MainList.dart';
 import 'package:airbnb_app_clone/login.dart';
 import 'package:airbnb_app_clone/message.dart';
 import 'package:airbnb_app_clone/search.dart';
+import 'package:airbnb_app_clone/signIn.dart';
 import 'package:airbnb_app_clone/travel.dart';
 import 'package:airbnb_app_clone/wish_list.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,9 @@ const MaterialColor white = const MaterialColor(
   },
 );
 
+
 void main() {
+
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
@@ -46,7 +49,8 @@ void main() {
       "/message" : (context) => Message(),
       "/travel" : (context) => Travel(),
       "/wish" : (context) => WishList(),
-      "login" : (context) => Login()
+      "login" : (context) => Login(),
+      "/signIn" : (context) => SignIn()
     },
   ));
 }
@@ -57,8 +61,9 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle( // 상태 표시줄 색 변경
-      statusBarColor: Colors.transparent // 투명색
+    // SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // 회색
     ));
     return Scaffold(
       body: Center(
