@@ -122,9 +122,8 @@ class Search extends StatelessWidget {
                 return Center(child: CircularProgressIndicator());
               } else if(snapshot.hasData) {
                 return Scrollbar(
-                  isAlwaysShown: true,
                   child: ListView.builder(
-                    itemCount: snapshot.data!.categoryList.length,
+                    itemCount: snapshot.data!.homeList.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
@@ -132,8 +131,8 @@ class Search extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children:[
-                              Container(width: 300, height: 300, color: Colors.black,)
-                              // Image.network(snapshot.data!.accomodationList[index].url, height: 30),
+                              // Container(width: 300, height: 300, color: Colors.black,)
+                              Image.network(snapshot.data!.homeList[index].url, height: 300),
                               // Text(snapshot.data!.categoryList[index].name, style: TextStyle(fontSize: 12)),
                             ],
                           )

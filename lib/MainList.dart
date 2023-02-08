@@ -23,9 +23,19 @@ Future<MainList> fetchMainList() async {
       categoryList.add(category);
     }
 
-    List<Accomodation> accomodationList = [];
+    List<Home> homeList = [];
+    for(var singleHome in responseData['homeList']) {
+      Home home = Home(
+        id: singleHome['id'],
+        place: singleHome['place'],
+        addr: singleHome['addr'],
+        price: singleHome['price'],
+        url: singleHome['url']
+      );
+      homeList.add(home);
+    }
 
-    MainList mainList = MainList(categoryList: categoryList, accomodationList: accomodationList);
+    MainList mainList = MainList(categoryList: categoryList, homeList: homeList);
     return mainList;
   } else {
     throw Exception('Failed to load category');
@@ -34,18 +44,18 @@ Future<MainList> fetchMainList() async {
 
 class MainList {
   final List<Category> categoryList;
-  final List<Accomodation> accomodationList;
+  final List<Home> homeList;
 
 
   const MainList({
     required this.categoryList,
-    required this.accomodationList
+    required this.homeList
   });
 
   factory MainList.fromJson(Map<String, dynamic> json) {
     return MainList(
         categoryList: json['categoryList'],
-        accomodationList: json['accomodationList']
+        homeList: json['homeList']
     );
   }
 }
@@ -72,59 +82,28 @@ class Category {
 }
 
 
-class Accomodation {
+class Home {
   final int id;
   final String place;
-  final String title;
   final String addr;
-  final String lat;
-  final String lng;
-  final String subTitle;
-  final int filterMaxPerson;
-  final int filterBedroom;
-  final int filterBed;
-  final int filterBathroom;
   final int price;
-  final String hostNotice;
-  final String locInfo;
-  final bool superHost;
+  final String url;
 
-  const Accomodation({
+  const Home({
     required this.id,
     required this.place,
-    required this.title,
     required this.addr,
-    required this.lat,
-    required this.lng,
-    required this.subTitle,
-    required this.filterMaxPerson,
-    required this.filterBedroom,
-    required this.filterBed,
-    required this.filterBathroom,
     required this.price,
-    required this.hostNotice,
-    required this.locInfo,
-    required this.superHost
-
+    required this.url
   });
 
-  factory Accomodation.fromJson(Map<String, dynamic> json) {
-    return Accomodation(
+  factory Home.fromJson(Map<String, dynamic> json) {
+    return Home(
         id: json['id'],
         place: json['place'],
-        title: json['title'],
         addr: json['addr'],
-        lat: json['lat'],
-        lng: json['lng'],
-        subTitle: json['subTitle'],
-        filterMaxPerson: json['filterMaxPerson'],
-        filterBedroom: json['filterBedroom'],
-        filterBed: json['filterBed'],
-        filterBathroom: json['filterBathroom'],
         price: json['price'],
-        hostNotice: json['hostNotice'],
-        locInfo: json['locInfo'],
-        superHost: json['superHost']
+        url: json['url']
     );
   }
 }
