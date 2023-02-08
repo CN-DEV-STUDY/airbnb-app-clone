@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 Future<MainList> fetchMainList() async {
   final response = await http
-      .get(Uri.parse("http://localhost:8080/mainList"));
+      .get(Uri.parse("http://13.125.154.241:8080/mainList"));
 
   if(response.statusCode == 200) {
     var responseData = jsonDecode(utf8.decode(response.bodyBytes));
