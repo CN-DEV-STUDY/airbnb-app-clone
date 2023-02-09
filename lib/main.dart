@@ -26,7 +26,6 @@ const MaterialColor white = const MaterialColor(
 
 
 void main() {
-
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
@@ -61,7 +60,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent, // 회색
     ));
@@ -76,6 +74,8 @@ class MainPage extends StatelessWidget {
 // Bottom Navigation Bar
 // 동적으로 화면을 변화하므로 StatefulWdiget 사용
 class TabPage extends StatefulWidget {
+  const TabPage({super.key});
+
   @override
   _TabPageState createState() => _TabPageState();
 }
@@ -84,7 +84,7 @@ class _TabPageState extends State<TabPage> {
   int _selectedIndex = 0; // 처음에 나올 화면 지정
 
   // 이동할 페이지
-  List _pages = [Search(),WishList(),Travel(),Message(), Login()];
+  final List _pages = [Search(),WishList(),Travel(),Message(), Login()];
 
   @override
   Widget build(BuildContext context) {

@@ -10,8 +10,6 @@ Future<MainList> fetchMainList() async {
 
   if(response.statusCode == 200) {
     var responseData = jsonDecode(utf8.decode(response.bodyBytes));
-    // List<Category> categoryList = List<Category>.from(i.first.map((model) => Category.fromJson(model)));
-    // List<Accomodation> accomodationList = List<Accomodation>.from(i.last.map((model) => Category.fromJson(model)));
 
     List<Category> categoryList = [];
     for(var singleCategory in responseData['categoryList']) {
