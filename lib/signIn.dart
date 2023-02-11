@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -36,6 +39,29 @@ class _SignInState extends State<SignIn> {
     print("Second text field: ${textController.text}");
   }
 
+  void _loginRequest() async {
+    final url = Uri.parse("http://localhost:8080/user/signIn");
+
+    http.Response response = await http.post(
+        url,
+        headers:<String, String> {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode(
+            {
+              "email": email,
+              "pwd": pwd
+            }
+        )
+    );
+
+    if(response.statusCode == 200){
+      print("성공");
+    } else {
+      print("실패");
+    }
+  }
+
   /**
    * 텍스트필드의 값의 변화를 핸들링 하는 방법
    * 1. 텍스트필드에 onChange 항목 구현
@@ -62,46 +88,78 @@ class _SignInState extends State<SignIn> {
             ),
             Flexible(
                 flex:1,
-                child: Form(
-                  child: ListView(
-                    children: [
-                      TextFormField(
-                        onChanged: (text){
-                          setState(() {
-                            email = text;
-                            print("email : $email");
-                          });
-                        },
-                        decoration: InputDecoration(labelText: 'ID'),
-                        textInputAction: TextInputAction.next,),
-                      TextFormField(
-                        onChanged: (text){
-                          setState(() {
-                            pwd = text;
-                            print("pwd : $pwd");
-                          });
-                        },
-                      decoration: InputDecoration(labelText: 'PWD'), textInputAction: TextInputAction.next,),
-                      Text('아이디와 비밀번호를 입력해주세요.' , style: TextStyle(fontSize: 10))
-                    ],
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  child: Form(
+                    child: ListView(
+                      children: [
+                        TextFormField(
+                          onChanged: (text){
+                            setState(() {
+                              email = text;
+                              print("email : $email");
+                            });
+                          },
+                          decoration: InputDecoration(
+                              labelText: 'ID',
+                              labelStyle: TextStyle(color: Colors.grey),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black)
+                              )),
+                          cursorColor: Colors.black,
+                          autofocus: true,
+                          style: TextStyle(color: Colors.black,),
+                          textInputAction: TextInputAction.next,),
+                        TextFormField(
+                          onChanged: (text){
+                            setState(() {
+                              pwd = text;
+                              print("pwd : $pwd");
+                            });
+                          },
+                          decoration: InputDecoration(
+                              labelText: 'PWD',
+                              labelStyle: TextStyle(color: Colors.grey),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),),
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black)
+                              )),
+                          cursorColor: Colors.black,
+                          autofocus: true,
+                          style: TextStyle(color: Colors.black,),
+                          textInputAction: TextInputAction.next,),
+                        Text('아이디와 비밀번호를 입력해주세요.' , style: TextStyle(fontSize: 10))
+                      ],
+                    ),
                   ),
                 )
             ),
             Flexible(
               flex:1,
-              child: Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 0, 20),
-                padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
-                width: 340,
-                height: 50,
-                child: ElevatedButton(onPressed: (){}, style: ElevatedButton.styleFrom(backgroundColor: Colors.pink , foregroundColor: Colors.white , textStyle: TextStyle(fontSize: 20)), child: Text('   계속 하기')),
+              child: Column(
+                children: [Container(
+                  // margin: EdgeInsets.fromLTRB(10, 0, 0, 20),
+                  padding: EdgeInsets.fromLTRB(0, 0, 20, 0),
+                  child: ElevatedButton(
+                      onPressed: (){_loginRequest();},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.pink ,
+                          foregroundColor: Colors.white ,
+                          textStyle: TextStyle(fontSize: 20) ,
+                          minimumSize: Size(450,50)),
+                      child: Text('   계속 하기')),
+                ),
+                  Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                    padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
+                    child: Text('또는' , style: TextStyle(fontSize: 15)),
+                  )]
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
-              alignment: Alignment.center,
-              child: Text('또는' , style: TextStyle(fontSize: 15)),
-            )
           ],
         ),
       ),

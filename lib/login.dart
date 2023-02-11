@@ -30,17 +30,15 @@ class Login extends StatelessWidget {
                 ),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        // margin: EdgeInsets.fromLTRB(30, 20, 0, 0),
-                        // width: 400,
-                        // height: 50,
                         children: [
-                          Container(
-                            margin: EdgeInsets.fromLTRB(0, 25, 30, 0),
-                            width: 340,
-                            height: 50,
-                          child: ElevatedButton(onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));
-                          }, child: Text('로그인') , style: ElevatedButton.styleFrom(backgroundColor: Colors.pink , foregroundColor: Colors.white , textStyle: TextStyle(fontSize: 20))),
+                          Center(
+                            child: Container(
+                              margin: EdgeInsets.fromLTRB(0, 25, 30, 0),
+                            child: ElevatedButton(
+                                onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context) => SignIn()));},
+                                style: ElevatedButton.styleFrom(backgroundColor: Colors.pink , foregroundColor: Colors.white , textStyle: TextStyle(fontSize: 20) , minimumSize: Size(450,50)),
+                                child: Text('로그인')),
+                            ),
                           ),
                           
                           Container(
